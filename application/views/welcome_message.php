@@ -30,11 +30,11 @@
       		</div>
       		<div class="checkbox mb-3">
         		<label>
-          			Password Forgot ?
+          			<a href="#">Forgot Password ?</a>
         		</label>
       		</div>
       		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      		<p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+      		<!-- <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p> -->
     	</form>
   	</body>
 </html>
