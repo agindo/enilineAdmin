@@ -10,13 +10,13 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$data = array('baseUrl' => base_url());
+		$data = array(
+                        'baseUrl' => base_url(),
+                        'username' => $this->session->userdata('checkUsers')['Users']['userName']
+                     );
+        $this->parser->parse('header', $data);
 		$this->parser->parse('dashboard', $data);
-	}
-
-	public function try()
-	{
-		echo 2;
+        $this->parser->parse('footer', $data);
 	}
     
 }

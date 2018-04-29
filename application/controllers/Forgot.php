@@ -89,11 +89,11 @@ class Forgot extends CI_Controller {
 					$this->parser->parse('reset', $data);
 	    		}else{
 	    			$warning = "<div class='alert alert-warning alert-dismissible' role='alert'>
-  								<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
-  								<strong>Warning!</strong> Your email is wrong.
-				  			</div>";
+  					             <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>
+  					             <strong>Warning!</strong> please send again.
+				                </div>";
 					echo $this->session->set_flashdata('message', $warning);
-      				redirect(base_url().'reset');
+      				redirect(base_url().'forgot');
 	    		}
   			}else{
   				redirect(base_url().'forgot');

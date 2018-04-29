@@ -7,7 +7,7 @@
     	<meta name="description" content="">
     	<meta name="author" content="">
     	<link rel="shortcut icon" href="{baseUrl}assets/ico/favicon.png">
-		  <title>Evaluasi Online</title>
+		<title>Evaluasi Online</title>
     	<!-- Bootstrap core CSS -->
     	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     	<!-- Custom styles for this template -->
