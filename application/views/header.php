@@ -36,7 +36,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <!-- <li class="active"><a href="#">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
             <li class="dropdown">
@@ -50,7 +50,43 @@
                 <li><a href="#">Separated link</a></li>
                 <li><a href="#">One more separated link</a></li>
               </ul>
+            </li> -->
+            <?php
+                
+                for($i=0; $i<count($getMenu); $i++)
+                {
+                    if($getMenu[$i]['ada'] != 0){
+            ?>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= $getMenu[$i]['menuName'] ?> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <!-- <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li> -->
+                <?php
+                    foreach($getSubmenu as $value)
+                    {
+                        if($value->id_menu == $getMenu[$i]['menuID'])
+                        {
+                            echo '<li><a href="'.$value->url.'">'.$value->sub_menu_name.'</a></li>';
+                        }
+                    }
+                ?>
+              </ul>
             </li>
+            <?php
+                    }else{
+            ?>
+            <li><a href="#"><?= $getMenu[$i]['menuName'] ?></a></li>
+            <?php
+                    }
+                    //echo '<li><a href="'.$getMenu[$i]['menuUrl'].'">'.$getMenu[$i]['menuName'].'</a></li>';
+                }
+            ?>
             <li><a href="{baseUrl}signout">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->

@@ -50,52 +50,26 @@ class Crud_model extends CI_Model {
 
 
 	//--------------------------------------------------------------
-
-
-	public function getLatpimAngkatan($id)
+    
+    public function getMenuActive($level)
+    {
+        return $this->db->get_where('menus', array('level'=>$level, 'status'=>1));
+    }
+    
+    public function getSubmenuActive($menu, $level)
+    {
+        return $this->db->get_where('submenus', array('level'=>$level, 'status'=>1, 'id_menu'=>$menu));
+    }
+    
+    public function getCountFieldStatus($id, $field, $table)
 	{
-		$this->db->select('latpim.nama_latpim, angkatan.nama_angkatan');
-		$this->db->from('angkatan');
-		$this->db->join('latpim', 'latpim.id = angkatan.id_latpim');
-		$this->db->where('angkatan.id', $id);
-		return $this->db->get();
+		$query = $this->db->get_where($table, array($field=>$id, 'status'=>1));
+		return $query->num_rows();
 	}
-
-	public function getMataPelatihan($angkatan)
-	{	
-		$this->db->select('pelatihan.id, pelatihan.tanggal, pelatihan.nama_fasilitator, matapelatihan.nama_matapelatihan');
-		$this->db->from('pelatihan');
-		$this->db->join('matapelatihan', 'matapelatihan.id = pelatihan.id_matapelatihan');
-		$this->db->where('id_angkatan', $angkatan);
-		$this->db->where('pelatihan.status', 1);
-		return $this->db->get();
-	}
-
-	public function getRateMataPelatihan($id)
-	{	
-		$this->db->select('pelatihan.id, pelatihan.tanggal, pelatihan.nama_fasilitator, matapelatihan.nama_matapelatihan');
-		$this->db->from('pelatihan');
-		$this->db->join('matapelatihan', 'matapelatihan.id = pelatihan.id_matapelatihan');
-		$this->db->where('pelatihan.id', $id);
-		$this->db->where('pelatihan.status', 1);
-		return $this->db->get();
-	}
-
-	public function getFound($id, $peserta)
+    
+    public function getFindFieldLevel($id, $field, $table, $level)
 	{
-		$this->db->from('nilai_kuisioner');
-		$this->db->where('id_pelatihan', $id);
-		$this->db->where('id_peserta', $peserta);
-		return $this->db->get();
-	}
-
-	public function getNilaiKuisioner($id)
-	{	
-		$this->db->select('nilai_kuisioner.id, nilai_kuisioner.tanggal, nilai_kuisioner.saran, nilai_kuisioner.id_pelatihan, nilai_kuisioner.id_peserta, detail_nilai.nilai, SUM(detail_nilai.nilai) AS tot');	
-		$this->db->from('nilai_kuisioner');
-		$this->db->join('detail_nilai', 'detail_nilai.id_nilai_kuisioner = nilai_kuisioner.id');
-		$this->db->where('nilai_kuisioner.id_pelatihan', $id);
-		return $this->db->get();
+		return $this->db->get_where($table, array($field=>$id, 'level'=>$level));
 	}
 
 }
