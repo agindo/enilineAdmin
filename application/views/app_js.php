@@ -113,6 +113,7 @@
           $('[name="diklat_name"]').val(data.diklat_name);
           $('[name="subdiklat_name"]').val(data.subdiklat_name);
           $('[name="matapelatihan_name"]').val(data.matapelatihan_name);
+          $('[name="kuisioner_name"]').val(data.kuisioner_name);
           $('[name="sub_menu_name"]').val(data.sub_menu_name);
           $('[name="url"]').val(data.url);
           $('[name="name"]').val(data.name);
