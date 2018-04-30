@@ -109,6 +109,7 @@
           $('[name="id_menu"]').val(data.id_menu);
           $('[name="name_level"]').val(data.name_level);
           $('[name="menu_name"]').val(data.menu_name);
+          $('[name="diklat_name"]').val(data.diklat_name);
           $('[name="sub_menu_name"]').val(data.sub_menu_name);
           $('[name="url"]').val(data.url);
           $('[name="name"]').val(data.name);
