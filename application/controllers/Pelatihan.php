@@ -39,7 +39,8 @@ class Pelatihan extends CI_Controller {
     
     public function ajax_list()
 	{	
-		$list = $this->Pelatihan_model->get_datatables();
+		$id = $this->uri->segment(3);
+		$list = $this->Pelatihan_model->get_datatables($id);
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $value) {
@@ -61,7 +62,7 @@ class Pelatihan extends CI_Controller {
 
 			$row = array();
 			$row[] = '<p class="text-center" style="margin-top:5px;margin-bottom:0px">'.$no.'</p>';
-			$row[] = '<p style="margin-top:5px;margin-bottom:0px">'.$diklatName.' / '.$value->matapelatihan_name.'</p>';
+			$row[] = '<p style="margin-top:5px;margin-bottom:0px">'.$value->matapelatihan_name.'</p>';
 			$row[] = '<p class="text-left" style="margin-top:5px;margin-bottom:0px">'.$status.'</p>';
             
 			$row[] = '<a class="btn btn-sm btn-block btn-default" href="javascript:void(0)" title="Edit" onclick="editData('.$value->id.')" style="background-color:#f1c40f;color:#fff;border-color:#fff"><i class="fa fa-pencil"></i></a>';
@@ -72,8 +73,8 @@ class Pelatihan extends CI_Controller {
 
 		$output = array(
 						"draw" => $_POST['draw'],
-						"recordsTotal" => $this->Pelatihan_model->count_all(),
-						"recordsFiltered" => $this->Pelatihan_model->count_filtered(),
+						"recordsTotal" => $this->Pelatihan_model->count_all($id),
+						"recordsFiltered" => $this->Pelatihan_model->count_filtered($id),
 						"data" => $data,
 				);
 		//output to json format
@@ -103,7 +104,7 @@ class Pelatihan extends CI_Controller {
 	{
 		$data = array(
 				'matapelatihan_name' => $this->input->post('matapelatihan_name'),
-                'id_diklat' => $this->input->post('id_diklat'),
+                // 'id_diklat' => $this->input->post('id_diklat'),
 				'status' => $this->input->post('status'),
 			);
 		$this->Crud_model->update(array('id' => $this->input->post('id')), $data, 'matapelatihan');
