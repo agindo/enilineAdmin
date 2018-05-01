@@ -64,7 +64,7 @@ class Subdiklat extends CI_Controller {
 
 			$row = array();
 			$row[] = '<p class="text-center" style="margin-top:5px;margin-bottom:0px">'.$no.'</p>';
-			$row[] = '<p style="margin-top:5px;margin-bottom:0px">'.$diklatName.' / '.$value->subdiklat_name.'</p>';
+			$row[] = '<p style="margin-top:5px;margin-bottom:0px">'.$value->subdiklat_name.'</p>';
 			$row[] = '<p class="text-left" style="margin-top:5px;margin-bottom:0px">'.$status.'</p>';
             
             $row[] = '<div class="btn-group btn-group-sm" role="group" aria-label="...">
@@ -74,6 +74,10 @@ class Subdiklat extends CI_Controller {
 			$row[] = '<div class="btn-group btn-group-sm" role="group" aria-label="...">
 						<a href="'.base_url().'subdiklat/peserta/'.$value->id.'" class="btn btn-default" style="background-color:#34495e;color:#fff;border-color:#fff"><i class="fa fa-plus"></i></a>
 						<a class="btn btn-default" style="background-color:#2c3e50;color:#fff;border-color:#fff"> 0&nbsp;&nbsp;<i class="fa fa-users"></i></a>
+					  </div>';
+			$row[] = '<div class="btn-group btn-group-sm" role="group" aria-label="...">
+						<a href="'.base_url().'subdiklat/peserta/'.$value->id.'" class="btn btn-default" style="background-color:#34495e;color:#fff;border-color:#fff"><i class="fa fa-plus"></i></a>
+						<a class="btn btn-default" style="background-color:#2c3e50;color:#fff;border-color:#fff"> 0&nbsp;&nbsp;<i class="fa fa-tag"></i></a>
 					  </div>';
 			$row[] = '<a class="btn btn-sm btn-block btn-default" href="javascript:void(0)" title="Edit" onclick="editData('.$value->id.')" style="background-color:#f1c40f;color:#fff;border-color:#fff"><i class="fa fa-pencil"></i></a>';
 			$row[] = '<a class="btn btn-sm btn-block btn-default" href="javascript:void(0)" title="Delete" onclick="deleteData('.$value->id.')" style="background-color:#e74c3c;color:#fff;border-color:#fff"><i class="fa fa-remove"></i></a>';

@@ -20,6 +20,7 @@
               <th width="100">Status</th>
               <th width="70"></th>
               <th width="70"></th>
+              <th width="70"></th>
               <th width="20"></th>
               <th width="20"></th>
             </tr>
