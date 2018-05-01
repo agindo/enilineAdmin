@@ -72,7 +72,7 @@
                     {
                         if($value->id_menu == $getMenu[$i]['menuID'])
                         {
-                            echo '<li><a href="'.$value->url.'">'.$value->sub_menu_name.'</a></li>';
+                            echo '<li><a href="'.base_url().''.$value->url.'">'.$value->sub_menu_name.'</a></li>';
                         }
                     }
                 ?>
@@ -81,7 +81,7 @@
             <?php
                     }else{
             ?>
-            <li><a href="#"><?= $getMenu[$i]['menuName'] ?></a></li>
+            <li><a href="<?= base_url() ?>#"><?= $getMenu[$i]['menuName'] ?></a></li>
             <?php
                     }
                     //echo '<li><a href="'.$getMenu[$i]['menuUrl'].'">'.$getMenu[$i]['menuName'].'</a></li>';

@@ -40,7 +40,8 @@ class Submenu extends CI_Controller {
     
     public function ajax_list()
 	{	
-		$list = $this->Submenu_model->get_datatables();
+		$dataID = $this->uri->segment(3);
+		$list = $this->Submenu_model->get_datatables($dataID);
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $value) {
@@ -83,8 +84,8 @@ class Submenu extends CI_Controller {
 
 		$output = array(
 						"draw" => $_POST['draw'],
-						"recordsTotal" => $this->Submenu_model->count_all(),
-						"recordsFiltered" => $this->Submenu_model->count_filtered(),
+						"recordsTotal" => $this->Submenu_model->count_all($dataID),
+						"recordsFiltered" => $this->Submenu_model->count_filtered($dataID),
 						"data" => $data,
 				);
 		//output to json format
@@ -115,7 +116,7 @@ class Submenu extends CI_Controller {
 	public function ajax_update()
 	{
 		$data = array(
-                'id_menu' => $this->input->post('id_menu'),
+                // 'id_menu' => $this->input->post('id_menu'),
 				'sub_menu_name' => $this->input->post('sub_menu_name'),
                 'url' => $this->input->post('url'),
                 'level' => $this->input->post('level'),

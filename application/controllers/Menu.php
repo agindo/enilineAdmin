@@ -45,6 +45,9 @@ class Menu extends CI_Controller {
 		foreach ($list as $value) {
 			$no++;
 
+			$count = $this->Crud_model->getCountField($value->id, 'id_menu', 'submenus');
+			
+
             $level = $this->Crud_model->getFindField($value->level, 'id', 'levels');
             if($level->num_rows() > 0){
                 $levelRow = $level->row();
@@ -66,6 +69,10 @@ class Menu extends CI_Controller {
             $row[] = '<p style="margin-top:5px;margin-bottom:0px">'.$levelName.'</p>';
 			$row[] = '<p class="text-left" style="margin-top:5px;margin-bottom:0px">'.$status.'</p>';
             
+            $row[] = '<div class="btn-group btn-group-sm" role="group" aria-label="...">
+						<a href="'.base_url().'menu/submenu/'.$value->id.'" class="btn btn-default" style="background-color:#34495e;color:#fff;border-color:#fff"><i class="fa fa-plus"></i></a>
+						<a class="btn btn-default" style="background-color:#2c3e50;color:#fff;border-color:#fff"> '.$count.'&nbsp;&nbsp;<i class="fa fa-navicon"></i></a>
+					  </div>';
 			$row[] = '<a class="btn btn-sm btn-block btn-default" href="javascript:void(0)" title="Edit" onclick="editData('.$value->id.')" style="background-color:#f1c40f;color:#fff;border-color:#fff"><i class="fa fa-pencil"></i></a>';
 			$row[] = '<a class="btn btn-sm btn-block btn-default" href="javascript:void(0)" title="Delete" onclick="deleteData('.$value->id.')" style="background-color:#e74c3c;color:#fff;border-color:#fff"><i class="fa fa-remove"></i></a>';
 		
@@ -120,4 +127,35 @@ class Menu extends CI_Controller {
 		echo json_encode(array("status" => TRUE));
 	}
     
+    public function submenu()
+    {
+    	$userLevel = $this->session->userdata('checkUsers')['Users']['userLevel'];
+        $menus = $this->Crud_model->getMenuActive($userLevel);
+        $menuName = $this->Crud_model->getFindField($this->uri->segment(3), 'id', 'menus')->row();
+             
+        $arr = Array();
+		$obj = Array();
+		foreach ($menus->result() as $value) {
+			$arr['menuID'] = $value->id;
+			$arr['menuName'] = $value->menu_name;
+			$arr['menuUrl'] = $value->url;
+			$arr['ada'] = $this->Crud_model->getCountFieldStatus($value->id, 'id_menu', 'submenus');
+			$obj[] = $arr;
+ 		}
+ 		$data['menus'] = $obj;
+        
+		$data = array(
+                       'baseUrl' => base_url(),
+                       'dataUrl' => $this->uri->segment(2),
+                       'dataID' => $this->uri->segment(3),
+                       'dataMenu' => $menuName->menu_name,
+                       'dataLevel' => $this->Crud_model->getFindField(1, 'status', 'levels')->result(),
+                       'getMenu' => $obj,
+                       'getSubmenu' => $this->Crud_model->getFindFieldLevel(1, 'status', 'submenus', $userLevel)->result()
+                     );
+        $this->parser->parse('header', $data);
+		$this->parser->parse('submenu', $data);
+        $this->parser->parse('footer', $data);
+        $this->parser->parse('custom_app_js/app_js', $data);
+    }
 }

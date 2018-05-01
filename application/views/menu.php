@@ -20,6 +20,7 @@
               <th>Url</th>
               <th width="100">Level</th>
               <th width="100">Status</th>
+              <th width="65"></th>
               <th width="20"></th>
               <th width="20"></th>
             </tr>
