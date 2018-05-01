@@ -3,7 +3,7 @@
             <main role="main" style="background-color:#FFFFFF;padding:30px 30px 30px 30px;">        
         <div class="row">
           <div class="col-md-6">
-            <h3 style="margin-top:0px;margin-bottom:4px">Data Subdiklat</h3>
+            <h3 style="margin-top:0px;margin-bottom:4px">{dataDiklat} <i class="fa fa-angle-double-right"></i> Subdiklat</h3>
           </div>
           <div class="col-md-6">
             <button type="button" class="btn btn-primary btn-sm pull-right" onclick="add()">
@@ -18,6 +18,7 @@
               <th width="25">&nbsp;</th>
               <th>Subdiklat</th>
               <th width="100">Status</th>
+              <th width="70"></th>
               <th width="20"></th>
               <th width="20"></th>
             </tr>
@@ -36,7 +37,7 @@
             </div>
             <div class="modal-body">
             <form id="form">
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="exampleInputPassword1">Diklat</label>
                 <select class="form-control" name="id_diklat">
                   <option>-Pilih-</option>
@@ -44,10 +45,11 @@
                     <option value="{id}">{diklat_name}</option>
                   {/diklat}
                 </select>
-              </div>
+              </div> -->
               <div class="form-group">
-                <label for="exampleInputEmail1">Diklat</label>
+                <label for="exampleInputEmail1">Subdiklat</label>
                 <input type="hidden" class="form-control" name="id">
+                <input type="hidden" class="form-control" name="id_diklat" value="{dataID}">
                 <input type="text" class="form-control" name="subdiklat_name" placeholder="Subdiklat">
               </div>
               <div class="form-group">

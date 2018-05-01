@@ -8,11 +8,11 @@ class Subdiklat_model extends CI_Model {
 	var $column_search = array('subdiklat_name');
 	var $order = array('id' => 'desc'); 
 
-	private function _get_datatables_query()
+	private function _get_datatables_query($id)
 	{
 		
 		$this->db->from($this->table);
-		// $this->db->where('id_user', $id);
+		$this->db->where('id_diklat', $id);
 
 		$i = 0;
 		foreach ($this->column_search as $item)
@@ -46,18 +46,18 @@ class Subdiklat_model extends CI_Model {
 		}
 	}
 
-	function get_datatables()
+	function get_datatables($id)
 	{
-		$this->_get_datatables_query();
+		$this->_get_datatables_query($id);
 		if($_POST['length'] != -1)
 		$this->db->limit($_POST['length'], $_POST['start']);
 		$query = $this->db->get();
 		return $query->result();
 	}
 
-	function count_filtered()
+	function count_filtered($id)
 	{
-		$this->_get_datatables_query();
+		$this->_get_datatables_query($id);
 		$query = $this->db->get();
 		return $query->num_rows();
 	}

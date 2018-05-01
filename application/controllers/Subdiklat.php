@@ -39,7 +39,8 @@ class Subdiklat extends CI_Controller {
     
     public function ajax_list()
 	{	
-		$list = $this->Subdiklat_model->get_datatables();
+		$id = $this->uri->segment(3);
+		$list = $this->Subdiklat_model->get_datatables($id);
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $value) {
@@ -64,6 +65,10 @@ class Subdiklat extends CI_Controller {
 			$row[] = '<p style="margin-top:5px;margin-bottom:0px">'.$diklatName.' / '.$value->subdiklat_name.'</p>';
 			$row[] = '<p class="text-left" style="margin-top:5px;margin-bottom:0px">'.$status.'</p>';
             
+            $row[] = '<div class="btn-group btn-group-sm" role="group" aria-label="...">
+						<a href="'.base_url().'subdiklat/angkatan/'.$value->id.'" class="btn btn-default" style="background-color:#34495e;color:#fff;border-color:#fff"><i class="fa fa-plus"></i></a>
+						<a class="btn btn-default" style="background-color:#2c3e50;color:#fff;border-color:#fff"> 0 &nbsp;&nbsp;<i class="fa fa-flag"></i></a>
+					  </div>';
 			$row[] = '<a class="btn btn-sm btn-block btn-default" href="javascript:void(0)" title="Edit" onclick="editData('.$value->id.')" style="background-color:#f1c40f;color:#fff;border-color:#fff"><i class="fa fa-pencil"></i></a>';
 			$row[] = '<a class="btn btn-sm btn-block btn-default" href="javascript:void(0)" title="Delete" onclick="deleteData('.$value->id.')" style="background-color:#e74c3c;color:#fff;border-color:#fff"><i class="fa fa-remove"></i></a>';
 		
@@ -72,8 +77,8 @@ class Subdiklat extends CI_Controller {
 
 		$output = array(
 						"draw" => $_POST['draw'],
-						"recordsTotal" => $this->Subdiklat_model->count_all(),
-						"recordsFiltered" => $this->Subdiklat_model->count_filtered(),
+						"recordsTotal" => $this->Subdiklat_model->count_all($id),
+						"recordsFiltered" => $this->Subdiklat_model->count_filtered($id),
 						"data" => $data,
 				);
 		//output to json format
@@ -103,7 +108,7 @@ class Subdiklat extends CI_Controller {
 	{
 		$data = array(
 				'subdiklat_name' => $this->input->post('subdiklat_name'),
-                'id_diklat' => $this->input->post('id_diklat'),
+                // 'id_diklat' => $this->input->post('id_diklat'),
 				'status' => $this->input->post('status'),
 			);
 		$this->Crud_model->update(array('id' => $this->input->post('id')), $data, 'subdiklat');

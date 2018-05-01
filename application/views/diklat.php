@@ -18,6 +18,7 @@
               <th width="25">&nbsp;</th>
               <th>Diklat</th>
               <th width="100">Status</th>
+              <th width="65"></th>
               <th width="20"></th>
               <th width="20"></th>
             </tr>
