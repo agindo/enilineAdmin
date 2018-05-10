@@ -109,6 +109,7 @@
           $('[name="id_menu"]').val(data.id_menu);
           $('[name="id_diklat"]').val(data.id_diklat);
           $('[name="name_level"]').val(data.name_level);
+          $('[name="jenis_pelatihan"]').val(data.nama_jenis_pelatihan);
           $('[name="menu_name"]').val(data.menu_name);
           $('[name="diklat_name"]').val(data.diklat_name);
           $('[name="subdiklat_name"]').val(data.subdiklat_name);

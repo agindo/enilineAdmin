@@ -1,18 +1,18 @@
                        <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Kuisioner_model extends CI_Model {
+class Jenis_pelatihan_model extends CI_Model {
 
-	var $table = 'kuisioner';
-	var $column_order = array('kuisioner_name',null);
-	var $column_search = array('kuisioner_name');
+	var $table = 'jenis_pelatihan';
+	var $column_order = array('nama_jenis_pelatihan',null);
+	var $column_search = array('nama_jenis_pelatihan');
 	var $order = array('id' => 'desc'); 
 
-	private function _get_datatables_query($id)
+	private function _get_datatables_query()
 	{
 		
 		$this->db->from($this->table);
-		$this->db->where('id_jenis_pelatihan', $id);
+		// $this->db->where('id_user', $id);
 
 		$i = 0;
 		foreach ($this->column_search as $item)
@@ -46,18 +46,18 @@ class Kuisioner_model extends CI_Model {
 		}
 	}
 
-	function get_datatables($id)
+	function get_datatables()
 	{
-		$this->_get_datatables_query($id);
+		$this->_get_datatables_query();
 		if($_POST['length'] != -1)
 		$this->db->limit($_POST['length'], $_POST['start']);
 		$query = $this->db->get();
 		return $query->result();
 	}
 
-	function count_filtered($id)
+	function count_filtered()
 	{
-		$this->_get_datatables_query($id);
+		$this->_get_datatables_query();
 		$query = $this->db->get();
 		return $query->num_rows();
 	}

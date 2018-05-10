@@ -2,10 +2,10 @@
     <div class="container">
             <main role="main" style="background-color:#FFFFFF;padding:30px 30px 30px 30px;">        
         <div class="row">
-          <div class="col-md-8">
-            <h3 style="margin-top:0px;margin-bottom:4px">Data Mata Pelatihan {dataDiklat}</h3>
+          <div class="col-md-6">
+            <h3 style="margin-top:0px;margin-bottom:4px">Data Jenis Pelatihan</h3>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <button type="button" class="btn btn-primary btn-sm pull-right" onclick="add()">
               Add Data
             </button>
@@ -16,9 +16,9 @@
           <thead>
             <tr>
               <th width="25">&nbsp;</th>
-              <th>Mata Pelatihan</th>
-              <th width="130"></th>
+              <th>Jenis Pelatihan</th>
               <th width="100">Status</th>
+              <th width="70"></th>
               <th width="20"></th>
               <th width="20"></th>
             </tr>
@@ -38,19 +38,9 @@
             <div class="modal-body">
             <form id="form">
               <div class="form-group">
-                <label for="exampleInputPassword1">Diklat</label>
-                <select class="form-control" name="id_jenis_pelatihan">
-                  <option>-Pilih-</option>
-                  {jenisPelatihan}
-                    <option value="{id}">{nama_jenis_pelatihan}</option>
-                  {/jenisPelatihan}
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Mata Pelatihan</label>
+                <label for="exampleInputEmail1">Jenis Pelatihan</label>
                 <input type="hidden" class="form-control" name="id">
-                <input type="hidden" class="form-control" name="id_diklat" value="{dataID}">
-                <input type="text" class="form-control" name="matapelatihan_name" placeholder="Mata Pelatihan">
+                <input type="text" class="form-control" name="jenis_pelatihan" placeholder="Jenis Pelatihan">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Status</label>

@@ -3,7 +3,7 @@
             <main role="main" style="background-color:#FFFFFF;padding:30px 30px 30px 30px;">        
         <div class="row">
           <div class="col-md-6">
-            <h3 style="margin-top:0px;margin-bottom:4px">Data Kuisioner</h3>
+            <h3 style="margin-top:0px;margin-bottom:4px">Data Kuisioner {jenisPelatihan}</h3>
           </div>
           <div class="col-md-6">
             <button type="button" class="btn btn-primary btn-sm pull-right" onclick="add()">
@@ -36,7 +36,7 @@
             </div>
             <div class="modal-body">
             <form id="form">
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="exampleInputPassword1">Diklat</label>
                 <select class="form-control" name="id_diklat">
                   <option>-Pilih-</option>
@@ -44,10 +44,11 @@
                     <option value="{id}">{diklat_name}</option>
                   {/diklat}
                 </select>
-              </div>
+              </div> -->
               <div class="form-group">
                 <label for="exampleInputEmail1">Kuisioner</label>
                 <input type="hidden" class="form-control" name="id">
+                <input type="hidden" class="form-control" name="id_jenis_pelatihan" value="{dataID}">
                 <input type="text" class="form-control" name="kuisioner_name" placeholder="Kuisioner">
               </div>
               <div class="form-group">

@@ -39,19 +39,20 @@ class Kuisioner extends CI_Controller {
     
     public function ajax_list()
 	{	
-		$list = $this->Kuisioner_model->get_datatables();
+		$id = $this->uri->segment(3);
+		$list = $this->Kuisioner_model->get_datatables($id);
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $value) {
 			$no++;
 
-            $diklat = $this->Crud_model->getFindField($value->id_diklat, 'id', 'diklat');
-            if($diklat->num_rows() > 0){
-                $diklatRow = $diklat->row();
-                $diklatName = $diklatRow->diklat_name;
-            }else{
-                $diklatName = '-';
-            }
+            // $diklat = $this->Crud_model->getFindField($value->id_diklat, 'id', 'diklat');
+            // if($diklat->num_rows() > 0){
+            //     $diklatRow = $diklat->row();
+            //     $diklatName = $diklatRow->diklat_name;
+            // }else{
+            //     $diklatName = '-';
+            // }
 
 			if($value->status != 0){
 				$status = "Active";
@@ -61,7 +62,7 @@ class Kuisioner extends CI_Controller {
 
 			$row = array();
 			$row[] = '<p class="text-center" style="margin-top:5px;margin-bottom:0px">'.$no.'</p>';
-			$row[] = '<p style="margin-top:5px;margin-bottom:0px">'.$diklatName.' / '.$value->kuisioner_name.'</p>';
+			$row[] = '<p style="margin-top:5px;margin-bottom:0px">'.$value->kuisioner_name.'</p>';
 			$row[] = '<p class="text-left" style="margin-top:5px;margin-bottom:0px">'.$status.'</p>';
             
 			$row[] = '<a class="btn btn-sm btn-block btn-default" href="javascript:void(0)" title="Edit" onclick="editData('.$value->id.')" style="background-color:#f1c40f;color:#fff;border-color:#fff"><i class="fa fa-pencil"></i></a>';
@@ -72,8 +73,8 @@ class Kuisioner extends CI_Controller {
 
 		$output = array(
 						"draw" => $_POST['draw'],
-						"recordsTotal" => $this->Kuisioner_model->count_all(),
-						"recordsFiltered" => $this->Kuisioner_model->count_filtered(),
+						"recordsTotal" => $this->Kuisioner_model->count_all($id),
+						"recordsFiltered" => $this->Kuisioner_model->count_filtered($id),
 						"data" => $data,
 				);
 		//output to json format
@@ -84,7 +85,7 @@ class Kuisioner extends CI_Controller {
 	{
 		$data = array(
 				'kuisioner_name' => $this->input->post('kuisioner_name'),
-                'id_diklat' => $this->input->post('id_diklat'),
+                'id_jenis_pelatihan' => $this->input->post('id_jenis_pelatihan'),
 				'status' => $this->input->post('status'),
 			);
 
@@ -103,7 +104,6 @@ class Kuisioner extends CI_Controller {
 	{
 		$data = array(
 				'kuisioner_name' => $this->input->post('kuisioner_name'),
-                'id_diklat' => $this->input->post('id_diklat'),
 				'status' => $this->input->post('status'),
 			);
 		$this->Crud_model->update(array('id' => $this->input->post('id')), $data, 'kuisioner');

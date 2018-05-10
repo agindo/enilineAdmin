@@ -54,6 +54,14 @@ class Pelatihan extends CI_Controller {
                 $diklatName = '-';
             }
 
+            $jenisPelatihan = $this->Crud_model->getFindField($value->id_jenis_pelatihan, 'id', 'jenis_pelatihan');
+            if($jenisPelatihan->num_rows() > 0){
+                $jenisPelatihanRow = $jenisPelatihan->row();
+                $jenisPelatihanName = $jenisPelatihanRow->nama_jenis_pelatihan;
+            }else{
+                $jenisPelatihanName = '-';
+            }
+
 			if($value->status != 0){
 				$status = "Active";
 			}else{
@@ -63,6 +71,7 @@ class Pelatihan extends CI_Controller {
 			$row = array();
 			$row[] = '<p class="text-center" style="margin-top:5px;margin-bottom:0px">'.$no.'</p>';
 			$row[] = '<p style="margin-top:5px;margin-bottom:0px">'.$value->matapelatihan_name.'</p>';
+			$row[] = '<p style="margin-top:5px;margin-bottom:0px">'.$jenisPelatihanName.'</p>';
 			$row[] = '<p class="text-left" style="margin-top:5px;margin-bottom:0px">'.$status.'</p>';
             
 			$row[] = '<a class="btn btn-sm btn-block btn-default" href="javascript:void(0)" title="Edit" onclick="editData('.$value->id.')" style="background-color:#f1c40f;color:#fff;border-color:#fff"><i class="fa fa-pencil"></i></a>';
@@ -85,6 +94,7 @@ class Pelatihan extends CI_Controller {
 	{
 		$data = array(
 				'matapelatihan_name' => $this->input->post('matapelatihan_name'),
+				'id_jenis_pelatihan' => $this->input->post('id_jenis_pelatihan'),
                 'id_diklat' => $this->input->post('id_diklat'),
 				'status' => $this->input->post('status'),
 			);
@@ -104,6 +114,7 @@ class Pelatihan extends CI_Controller {
 	{
 		$data = array(
 				'matapelatihan_name' => $this->input->post('matapelatihan_name'),
+				'id_jenis_pelatihan' => $this->input->post('id_jenis_pelatihan'),
                 // 'id_diklat' => $this->input->post('id_diklat'),
 				'status' => $this->input->post('status'),
 			);
